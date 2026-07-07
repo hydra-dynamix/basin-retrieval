@@ -1,4 +1,4 @@
-# Basin Retrieval: First-Stage Search-Space Compression Through Structural Compatibility
+# Basin Retrieval: Structural Compatibility as a First-Stage Retrieval Objective
 
 ## Abstract
 
@@ -43,7 +43,7 @@ This paper contributes:
 
 ## 2. Retrieval Objectives
 
-The central move of this paper is conceptual: the first stage should not attempt semantic identification at all. It should change the retrieval objective from finding the correct item to preserving the compatible set. Compression is the consequence of that change, not the mechanism; once the first stage asks only what could still be correct, the basin it returns is necessarily small. We make the distinction concrete by naming two retrieval goals, because conflating them is where most of the wasted retrieval effort comes from.
+The central move of this paper is conceptual: the first stage should not attempt semantic identification at all. It should change the retrieval objective from finding the correct item to preserving the compatible set. Compression is the consequence of that change, not the mechanism; once the first stage asks only what could still be correct, the basin it returns is expected to be substantially smaller than the original search space. We make the distinction concrete by naming two retrieval goals, because conflating them is where most of the wasted retrieval effort comes from.
 
 ### 2.1 Identity retrieval
 
@@ -122,34 +122,57 @@ We precompute the relational traces as signatures, and use the signature of the 
 
 ---
 
-## 4. Structural Encoding
+## 4. One Structural Realization
 
-We now describe the encoding, with only enough detail that someone could reproduce it.
+The preceding sections define the retrieval objective: retrieve a bounded basin of structurally compatible candidates while preserving the target. That objective does not require any particular encoding. This section describes the specific realization evaluated in this paper.
+
+The guiding design principle is simple:
+
+> **The retrieval key should preserve structural compatibility without depending on semantic identity.**
+
+We arrived at this design empirically rather than theoretically. During development we repeatedly found that allowing semantic labels to define the first retrieval neighborhood fragmented compatible candidate sets, reducing compression while providing no benefit to a stage whose only responsibility is compatibility preservation. The encoding presented here therefore deliberately ignores semantic identity during first-stage retrieval. Semantic information remains available to downstream stages after the basin has been formed.
 
 ### 4.1 Data model
 
-Each stored item is represented as a relational structure that can be traversed as one or more walks. A query is a partial walk, or a partial signature derived from incomplete evidence. The retrieval problem is to find stored items whose canonical recurrence signatures remain compatible with the query prefix.
+Each stored item is represented as a relational structure that can be traversed as one or more walks. A query consists of a partial walk, producing an incomplete structural signature. Retrieval returns every stored item whose signature remains compatible with that observed prefix.
 
-The method does not require labels to be absent from the data. Labels exist in the stored payload — they may describe nodes, relation types, artifacts, commands, outcomes, or semantic content. The rule is narrower: labels cannot define the first-pass retrieval key.
+Labels are not removed from the data. They remain part of the stored payload and may describe entities, relation types, commands, observations, artifacts, or semantic content. The restriction is narrower: semantic labels are not permitted to define the first-stage retrieval key.
 
-### 4.2 Canonical recurrence signatures
+### 4.2 Canonical structural signatures
 
-A relational walk is canonicalized by assigning node ids according to first occurrence. The first distinct node is `0`, the next unseen node is `1`, and so on. Later encounters reuse the earlier id. The signature therefore records recurrence structure rather than concrete identity:
+The realization evaluated in this paper represents each walk by its recurrence structure rather than its concrete node identities.
+
+Nodes receive identifiers according to first occurrence during traversal. The first distinct node becomes `0`, the next unseen node becomes `1`, and subsequent visits reuse the existing identifier.
 
 ```text
-walk:       A -> B -> A -> C -> B
+walk:      A -> B -> A -> C -> B
 signature: 0 -> 1 -> 0 -> 2 -> 1
 ```
 
-This signature is the core index key. It lets distinct label realizations share the same retrieval neighborhood when their recurrence pattern matches, which is the behavior the system needs for candidate compression. The sequence structure preserves reusable structural basins instead of splitting them by local surface vocabulary. It also does not necessarily have to be applied to temporally organized structures alone — it should work with any transition that encodes a sequence of relationships across a corpus of similar traces.
+The resulting signature records only the recurrence pattern. Distinct relational walks that share the same structural organization therefore produce identical retrieval keys despite differing entirely in their semantic labels.
+
+This property is intentional. The objective of the first stage is not to distinguish between semantically different objects but to preserve every candidate that remains structurally compatible with the observed evidence.
+
+Although this paper evaluates first-occurrence recurrence signatures, they are not claimed to be unique or optimal. Any encoding that preserves structural compatibility while remaining semantically indifferent could satisfy the retrieval contract established in Sections 2 and 3.
 
 ### 4.3 Basin retrieval
 
-Retrieval is performed by discrete prefix-consistency pruning. A partial query signature is checked against the indexed signatures and matches are collected. The resulting candidate basin contains all previously encountered candidates that can still continue that sequence. We consider retrieval a success when the basin is small and includes the target.
+Retrieval is performed by prefix-consistency matching over the indexed structural signatures.
+
+A partial query signature is compared against the stored signatures. Every stored item whose signature remains consistent with the observed prefix is retained. All structurally incompatible candidates are discarded.
+
+The output is therefore a bounded compatibility basin rather than a ranked list.
+
+Two consequences follow naturally from the retrieval objective.
+
+First, retrieval is discrete rather than graded. Candidates either remain compatible with the observed structure or they do not. The operator performs elimination rather than scoring.
+
+Second, retrieval success is evaluated differently from conventional search systems. The operator succeeds when it substantially reduces the candidate space while preserving the target within the returned basin. Ranking, semantic discrimination, and reasoning occur only after this structural reduction has completed.
+
 
 We state this explicitly, because it future-proofs the result:
 
-> **The specific encoding is not the primary contribution. Any encoding that preserves structural compatibility may be substituted.** Canonical first-occurrence recurrence signatures are the one we evaluate; they are not claimed to be unique or optimal. The encoding is also not specific to relational graphs — it applies to any discrete transition sequence, including temporal event streams captured by sliding windows (the 554× temporal result used the same canonical signature). The contribution is the objective — compatibility retrieval that compresses — and the evidence that the compression envelope holds across input domains.
+> **The specific encoding is not the primary contribution. Any encoding that preserves structural compatibility may be substituted.** The implementation presented here is one realization of the compatibility-retrieval objective introduced earlier. Its purpose is not to argue that first-occurrence recurrence signatures are the correct encoding, but to demonstrate that a semantically indifferent structural representation can satisfy the retrieval contract in practice.
 
 ---
 
@@ -199,7 +222,7 @@ On every content type we tested, the structural operator retrieves a small bound
 | temporal traces, long window (~6.4k seq) | ~6,400 | 11.5 | **554×** | 1.0 (coverage 1.0) |
 | fresh-domain code call-graphs (~2.5k walks) | 1,255 | ~99 | **12.7×** | **1.0** |
 
-Compression ranges from 12.7× on the fresh-domain code graphs to 554× on large temporal traces. Compression magnitude is domain-dependent — it tracks how much structural recurrence the underlying content contains — but target inclusion is 1.0 wherever the operator returns a non-empty basin, including on the domain it never saw during development. Compression scales with evidence length on the fresh domain: 1.7× at half-length prefixes rising to 12.7× at full evidence, with inclusion held at 1.0 across the sweep.
+Compression magnitude appears to track structural recurrence density. Target inclusion is 1.0 wherever the operator returns a non-empty basin, including on the domain it never saw during development. Compression scales with evidence length on the fresh domain: 1.7× at half-length prefixes rising to 12.7× at full evidence, with inclusion held at 1.0 across the sweep. Perfect inclusion is the invariant; compression magnitude is the variable.
 
 ### 6.2 Basin size and polysemy
 
@@ -220,33 +243,29 @@ The baselines compress more aggressively but lose the target: the lexical prefix
 
 ### 6.4 What is stable and what is not
 
-Compression magnitude is domain-dependent (12.7× on fresh code graphs versus 554× on temporal traces), but target inclusion is stable at 1.0 across every corpus, including the domain the operator never saw. The operator is a compression stage whose safety property generalizes; its compression magnitude tracks the structural recurrence density of the content. We introduce no new concepts here.
+Compression magnitude is domain-dependent (12.7× on fresh code graphs versus 554× on temporal traces), but target inclusion is stable at 1.0 across every corpus, including the domain the operator never saw. The operator is a compression stage whose safety property generalizes; its compression magnitude appears to track the structural recurrence density of the content.
 
 ---
 
 ## 7. Discussion
 
-The operator changes the shape of a retrieval pipeline. Instead of
+What this paper changes is not an indexing scheme but a decomposition of the retrieval problem. Existing retrieval systems spend expensive semantic computation deciding what is *correct*. Basin retrieval deliberately postpones that decision. The first stage only decides what remains *possible*; discrimination among the possibilities is left to a later stage over a basin small enough to afford it.
+
+Stated as a decomposition: instead of solving *identify the answer* in one stage, split it into (1) eliminate impossibilities, then (2) discriminate among the remaining possibilities. The operator in this paper is one realization of stage (1) — structurally incompatible items are eliminated, the target is preserved — but the decomposition is the deeper move. Any first-stage method that maximizes compression while preserving the target fills the same role.
+
+The experiments say the decomposition is viable, not just the operator. Across four corpora including a domain the operator never saw, stage (1) alone removes 87–99.8% of the store while keeping the target (12.7×–554× compression at 1.0 inclusion). Lexical and token-overlap baselines fail the contract in the opposite direction: they compress more aggressively but drop inclusion to 0.02–0.35, eliminating the target along with everything else. A first stage that loses the answer is not a stage (2) can build on. The operator's contribution is satisfying the contract — compression that preserves the target — not maximum compression.
+
+The concrete pipeline shape falls out of the decomposition: a semantically indifferent basin stage runs before, not instead of, semantic retrieval.
 
 ```text
-LLM  →  vector retrieval  →  reason
+LLM  →  basin retrieval (stage 1: eliminate impossibilities)  →  semantic retrieval (stage 2: discriminate)  →  reasoning
 ```
 
-we propose
-
-```text
-LLM  →  structural basin retrieval  →  semantic retrieval  →  reasoning
-```
-
-The basin-retrieval stage is a first-stage search-space reduction. It does not identify the answer; it removes everything structurally incompatible, leaving a small bounded basin that a downstream semantic or reasoning stage can afford to process in full. Because the first stage is semantically indifferent, it does not pay the cost of semantic specificity where that cost is purely harmful, and it does not fragment the neighborhoods the downstream stage will need.
-
-This reframes what a retrieval stage is for. The first stage's job is not to be smart; it is to be cheap and safe — to compress while keeping the target in the basin. Smart discrimination belongs later, over a basin small enough to afford it. The compression results in Section 6 say that cheap-and-safe is achievable — 12.7× on a fresh domain up to 554× on temporal traces, with perfect inclusion throughout and unlike baselines that compress more by losing the target. Downstream stages receive a tractable candidate set rather than a corpus.
-
-Two observations from development that motivate the design but fall outside this paper's scope:
+One observation from development motivated the semantically indifferent design and is reported here rather than investigated:
 
 > During development we empirically found that introducing semantic information into the structural key consistently fragmented compatible neighborhoods. This motivated the deliberately semantically indifferent encoding used throughout the paper. A detailed investigation of semantic fragmentation is left to companion work.
 
-> Because retrieved candidates already share structural prefixes, they naturally induce a relational graph that downstream systems may exploit for ranking or reasoning. We leave quantitative evaluation of those downstream mechanisms to companion work.
+A second observation — that retrieved candidates share structural prefixes and so naturally induce a relational graph — has been removed from this paper. It belongs in companion work that evaluates the graph as a downstream reasoning structure rather than a teaser.
 
 ---
 
@@ -260,7 +279,7 @@ We are deliberately blunt here, because honest boundaries are what make a compre
 - **Cannot distinguish structurally identical sequences.** Two items with the same recurrence shape are indistinguishable to the first stage; only a downstream semantic stage can separate them.
 - **Deletion of identity-establishing evidence is destructive.** Because the encoding keys on first-occurrence position, removing the evidence that establishes recurrence identity can collapse the basin. Realistic redundant queries usually survive this, but adversarial deletion does not.
 - **Not intended to replace embeddings.** Embeddings and dense retrieval solve a different problem (identity retrieval, Section 2.1). This operator is a stage that runs before them, not a substitute.
-- **Compression magnitude is domain-dependent.** The fresh-domain test (code call-graphs) shows the operator generalizes to a domain it never saw, with perfect inclusion, but at lower compression (12.7× vs 34×). Compression tracks structural recurrence density. Whether the envelope holds on documents and external knowledge graphs — domains structurally unlike code or workflow logs — remains open.
+- **Compression magnitude is domain-dependent.** The fresh-domain test (code call-graphs) shows the operator generalizes to a domain it never saw, with perfect inclusion, but at lower compression (12.7× vs 34×). Compression appears to track structural recurrence density. Whether the envelope holds on documents and external knowledge graphs — domains structurally unlike code or workflow logs — remains open.
 
 ---
 
