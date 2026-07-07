@@ -11,6 +11,13 @@ downstream stage. On held-out relational data it achieves **34× compression
 with perfect target inclusion (1.0)**, on project-history content **32×**, and
 on temporal traces up to **554×**, again with perfect inclusion.
 
+This is the first of three planned papers. It presents only the compression
+operator and its envelope. Two companion papers — *Semantic Fragmentation in
+Structural Retrieval* (why semantic labels hurt first-stage retrieval) and
+*Emergent Evidence Graphs from Structural Basin Retrieval* (why a retrieved
+basin naturally induces a reasoning graph) — live as drafts in `episteme/paper/`
+and draw on the same archived code and data in this repository.
+
 ## Repository layout
 
 ```

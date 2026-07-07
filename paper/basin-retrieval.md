@@ -6,7 +6,7 @@ This paper describes a retrieval method for relational data that does not try to
 
 The mechanism is a canonical structural signature over relational walks. We assign node identity by first occurrence while walking the relational graph of the data, rather than using semantic labels. This was determined empirically — when we let labels define the first neighborhood they fragmented the compatible sets we needed to preserve.
 
-On held-out retrieval experiments the signature naturally organizes the data into topological neighborhoods, compressing the problem space into a small basin 34× with a target inclusion rate of 1.0. We achieved similar results on project-history content (32×) and on temporal window traces where the problem had time as a component (up to 554×), again with perfect inclusion. The operator's job is compression, not selection; everything else in the paper — why semantic labels hurt first-stage retrieval, and how a retrieved basin naturally induces an evidence graph for downstream reasoning — is supporting evidence for that one result.
+On held-out retrieval experiments the signature naturally organizes the data into topological neighborhoods, compressing the problem space into a small basin 34× with a target inclusion rate of 1.0. We achieved similar results on project-history content (32×) and on temporal window traces where the problem had time as a component (up to 554×), again with perfect inclusion. The operator's job is compression, not selection.
 
 ---
 
@@ -37,9 +37,7 @@ The contribution of this paper is an operator that does exactly this for relatio
 This paper contributes:
 
 - a **structural retrieval operator** for basin formation — a semantically indifferent first stage that compresses the candidate space;
-- empirical evidence that **semantic specificity fragments compatible neighborhoods** when used as a first-pass key, drawn from a representation-granularity sweep and a dual-lookup control;
-- a measured compression envelope (34× on synthetic relational families, 32× on project history, up to 554× on temporal traces, with perfect target inclusion throughout);
-- evidence that retrieved basins **naturally induce relational evidence structures** for downstream reasoning, without a separate construction or learning stage.
+- a measured compression envelope (34× on synthetic relational families, 32× on project history, up to 554× on temporal traces, with perfect target inclusion throughout).
 
 ---
 
@@ -65,7 +63,7 @@ We treat retrieval as compression, not selection. A retrieved basin of three ite
 
 ### 2.3 Why the distinction matters
 
-Identity retrieval and compatibility retrieval fail differently. Identity retrieval fails by ranking the wrong thing first. Compatibility retrieval fails by omitting the target (too aggressive) or by failing to compress (too permissive). Because the failure modes are different, the representations should be different. In particular — and this is the empirical observation the rest of the paper turns on — the semantic detail that helps an identity-retrieval system discriminate can be actively harmful to a compatibility-retrieval stage, because it fragments the very neighborhoods the stage is trying to preserve. We measure that directly in Section 5.
+Identity retrieval and compatibility retrieval fail differently. Identity retrieval fails by ranking the wrong thing first. Compatibility retrieval fails by omitting the target (too aggressive) or by failing to compress (too permissive). Because the failure modes are different, the representations should be different. In particular, the semantic detail that helps an identity-retrieval system discriminate can be actively harmful to a compatibility-retrieval stage, because it fragments the very neighborhoods the stage is trying to preserve. This observation motivates the semantically indifferent encoding used throughout the paper; we leave its detailed investigation to companion work.
 
 ---
 
@@ -110,7 +108,7 @@ We now describe the method conceptually, before any implementation detail. The o
               └─────────────────────────────────────┘
 ```
 
-**Figure 1.** The basin-retrieval pipeline. The first stage — structural encoding, prefix lookup, compatible basin — is the operator this paper contributes. It is semantically indifferent and returns a bounded basin. Semantic refinement happens after the basin is formed, never before. That ordering is what keeps semantic detail from fragmenting the neighborhood the operator needs to compress.
+**Figure 1.** The basin-retrieval pipeline. The first stage — structural encoding, prefix lookup, compatible basin — is the operator this paper contributes. It is semantically indifferent and returns a bounded basin. Semantic refinement happens after the basin is formed, never before.
 
 The decisive property is the ordering. We retrieve the basin before any semantic information is allowed to influence the result, so compression is robust to the presence or absence of labels. Two items with different concrete labels but the same relational structure produce the same retrieval key and land in the same basin. The operator compresses on structure; a later stage discriminates on content.
 
@@ -149,50 +147,7 @@ We state this explicitly, because it future-proofs the result:
 
 ---
 
-## 5. Why Semantic Labels Hurt
-
-This is the paper's most important empirical observation, and it deserves its own section. It is the justification for making the first stage semantically indifferent.
-
-The intuition that "more information is better" suggests that adding semantic detail to the retrieval representation should improve retrieval. In these experiments it frequently did the opposite, when used as the first-pass key. The mechanism is simple: semantic detail splits one reusable structural neighborhood into many incidental variants, each too small to be useful, and breaks reuse across structurally equivalent items.
-
-We observed the two regimes directly:
-
-```text
-COARSE (structural) encoding
-  │
-  ├─ large compatible basin preserved
-  ├─ recurrence density retained
-  └─ semantic refinement applied AFTER  →  reuse preserved
-
-SEMANTIC (specific) encoding
-  │
-  ├─ neighborhoods fragmented into label-variants
-  ├─ recurrence density reduced
-  └─ reuse lost across structurally equivalent items
-```
-
-This is not philosophy; it is measured. In a prior topology project we ran a representation-granularity sweep that varied how much categorical detail was carried in the retrieval key. The coarsest structural token (`entity`) gave the best reuse; adding all available categorical detail (`full_categorical`) produced the worst tested utility, because maximal detail fragmented the repeated motifs we needed to reuse. Coarse entity tokens gave best repeated-only utility at 0.948; more detailed tokens reduced it to 0.909; full categorical detail reduced mixed-workload utility down to 0.691. The semantic information broke up the candidate-trace neighborhoods in the retrieval space from the divergent detail added to the address.
-
-| encoding granularity (retrieval key) | reuse (repeated-only utility) |
-|---|---|
-| entity *(coarsest, structural)* | **0.948** |
-| phase_refined | 0.909 |
-| full_categorical *(max semantic detail)* | **0.691** |
-
-A second, sharper control isolates the harm to first-stage use of labels. When we combined a structural basin lookup with a labeled semantic lookup, the naive union of their outputs performed worse than either alone — broad semantic matches drowned out the structural basin:
-
-| policy | utility |
-|---|---|
-| labeled semantic lookup | 0.700 |
-| structural basin lookup | 1.000 |
-| **naive union (semantic + structural)** | **0.567** *(worse than labeled-only)* |
-| agreement-gated (both must agree) | 1.000 |
-
-The decisive fact is the 0.567. Combining semantic and structural signals by simple union fragments the neighborhood. The signals are only compatible once a basin already exists to gate against. This is the empirical core of the paper's central design rule: **semantic labels are payload and filters, not first-pass keys.** Injected early, they hurt. That is why the operator in Section 3 is semantically indifferent by construction.
-
----
-
-## 6. Experiments
+## 5. Experiments
 
 ### Experimental question
 
@@ -223,9 +178,9 @@ Nothing else. We deliberately do not report top-1 accuracy, because the operator
 
 ---
 
-## 7. Results
+## 6. Results
 
-### 7.1 Compression and inclusion — the central result
+### 6.1 Compression and inclusion — the central result
 
 On every content type we tested, the structural operator retrieves a small bounded basin containing the target while eliminating the overwhelming majority of the store:
 
@@ -238,47 +193,17 @@ On every content type we tested, the structural operator retrieves a small bound
 
 Compression ranges from ~24× on small synthetic motifs to 554× on large temporal traces. Target inclusion is 1.0 wherever the operator returns a non-empty basin.
 
-### 7.2 Basin size and polysemy
+### 6.2 Basin size and polysemy
 
 Basins are small (1–2 items on relational content, ~11 on large temporal corpora), and the operator does not collapse polysemy to a single answer. A prefix shared by divergent families correctly activates all compatible basins (ambiguity retention 1.0), with mean shared-preface basin ~5.6 narrowing to ~1.15 once a disambiguating relation is added. Returning a small set rather than one answer is by design — the operator compresses for a downstream selector.
 
-### 7.3 Semantic fragmentation (recap)
-
-The result from Section 5 holds here as an experimental finding, not just a design rule: coarse structural keys preserve reuse (0.948), maximal semantic detail fragments it (0.691). Compression was achieved with the structural key; injecting semantic detail into the first pass would have reduced the size of the reusable basins the operator depends on.
-
-### 7.4 What is stable and what is not
+### 6.3 What is stable and what is not
 
 Compression and inclusion are stable across all three content types. The operator is a compression stage, and compression is what the data show. We introduce no new concepts here.
 
 ---
 
-## 8. Basin Projection
-
-This is where the relational graph enters — and it enters as a consequence, not as another algorithm.
-
-Once a basin has been retrieved, the shared relational structure between compatible sequences naturally induces an evidence graph. Candidates in the same basin share prefix structure, and the relations they carry past the shared prefix form a graph of how the query could continue. That graph can then support ranking, filtering, inference, and planning — all downstream uses, none of them this operator's responsibility.
-
-The point we want to make clearly is this:
-
-> **The graph is not constructed by another learning stage. It emerges from retrieval.**
-
-The basin is retrieved by structural compatibility; the evidence graph is the relational content already present in the compatible candidates, projected out once the basin exists. No model is trained to produce it.
-
-We can test that the emergent graph carries information beyond what flat overlap would give. We built a control from **same-node rewired decoys**: each decoy has exactly the same node set and the same relation-label multiset as a real item, but the relations are connected differently. To flat token/node overlap these decoys are indistinguishable from the real item; to a structure-sensitive projection they are not:
-
-| scorer | top-1 accuracy | basin | compression |
-|---|---:|---:|---:|
-| coarse_only (structural key alone) | 0.0 | 64 | 1× |
-| node_bag *(flat node/token overlap)* | **0.0** *(decoys tie)* | 2.0 | 32× |
-| content_graph *(emergent basin projection)* | **0.80** | 1.7 | 54.5× |
-
-Flat overlap (`node_bag`) fails on rewired decoys because it cannot see connections, only membership — the real item and its decoy tie at 0.0. The projected basin graph resolves them (0.80 aggregate, 1.0 on structured queries). This is not a second retrieval system being added; it is the structural basin doing its job, with the relational content that survived retrieval finally allowed to discriminate.
-
-This is elegant precisely because nothing was bolted on. The basin induced the evidence; the evidence resolved the decoys. The operator remains a single structural compression stage.
-
----
-
-## 9. Discussion
+## 7. Discussion
 
 The operator changes the shape of a retrieval pipeline. Instead of
 
@@ -294,13 +219,17 @@ LLM  →  structural basin retrieval  →  semantic retrieval  →  reasoning
 
 The basin-retrieval stage is a first-stage search-space reduction. It does not identify the answer; it removes everything structurally incompatible, leaving a small bounded basin that a downstream semantic or reasoning stage can afford to process in full. Because the first stage is semantically indifferent, it does not pay the cost of semantic specificity where that cost is purely harmful, and it does not fragment the neighborhoods the downstream stage will need.
 
-This reframes what a retrieval stage is for. The first stage's job is not to be smart; it is to be cheap and safe — to compress aggressively while guaranteeing the target survives. Smart discrimination belongs later, over a basin small enough to afford it. The compression results in Section 7 say that cheap-and-safe is achievable: 34× on relational data, 554× on temporal traces, with perfect inclusion. Downstream stages receive a tractable candidate set rather than a corpus.
+This reframes what a retrieval stage is for. The first stage's job is not to be smart; it is to be cheap and safe — to compress aggressively while guaranteeing the target survives. Smart discrimination belongs later, over a basin small enough to afford it. The compression results in Section 6 say that cheap-and-safe is achievable: 34× on relational data, 554× on temporal traces, with perfect inclusion. Downstream stages receive a tractable candidate set rather than a corpus.
 
-The evidence-graph result in Section 8 is a bonus of this framing: because the first stage preserves structure rather than reducing to tokens, the basin it returns already contains the relational evidence the downstream stage will reason over. The graph does not need to be reconstructed; it was never discarded.
+Two observations from development that motivate the design but fall outside this paper's scope:
+
+> During development we empirically found that introducing semantic information into the structural key consistently fragmented compatible neighborhoods. This motivated the deliberately semantically indifferent encoding used throughout the paper. A detailed investigation of semantic fragmentation is left to companion work.
+
+> Because retrieved candidates already share structural prefixes, they naturally induce a relational graph that downstream systems may exploit for ranking or reasoning. We leave quantitative evaluation of those downstream mechanisms to companion work.
 
 ---
 
-## 10. Limitations
+## 8. Limitations
 
 We are deliberately blunt here, because honest boundaries are what make a compression claim credible.
 
@@ -314,9 +243,9 @@ We are deliberately blunt here, because honest boundaries are what make a compre
 
 ---
 
-## 11. Conclusion
+## 9. Conclusion
 
-Structural compatibility is a different retrieval objective than semantic identity. By separating those objectives, a semantically indifferent first-stage retrieval operator can substantially reduce the search space — 34× on relational data, up to 554× on temporal traces — while preserving compatible candidates for downstream semantic processing. The same separation explains why semantic labels, useful as they are after the fact, hurt when used to form the first-pass neighborhood. The operator is not a semantic retrieval system and does not try to be. It compresses; a downstream stage reasons.
+Structural compatibility is a different retrieval objective than semantic identity. By separating those objectives, a semantically indifferent first-stage retrieval operator can substantially reduce the search space — 34× on relational data, up to 554× on temporal traces — while preserving compatible candidates for downstream semantic processing. The operator is not a semantic retrieval system and does not try to be. It compresses; a downstream stage reasons.
 
 ---
 
@@ -325,6 +254,6 @@ Structural compatibility is a different retrieval objective than semantic identi
 All experiments run with seed `20260706`. The synthetic corpus is generated by a fixed relational-family generator (20 disjoint families + 10 polysemy bases); project-history content is the LDGR observation/artifact/report corpus; temporal traces are long-window workflow event logs. Code, raw result JSON, and the project history used as memory content are archived:
 
 ```text
-GitHub:   https://github.com/hydra-dynamix/episteme
-HF data:  https://huggingface.co/datasets/Bakobiibizo/episteme-evidence
+GitHub:   https://github.com/hydra-dynamix/basin-retrieval
+HF data:  https://huggingface.co/datasets/Bakobiibizo/basin-retrieval
 ```
