@@ -1,0 +1,124 @@
+{
+  "experiment": "fresh-domain-prefix-sweep",
+  "corpus_size": 2552,
+  "n_index": 1255,
+  "n_queries": 1297,
+  "sweep": {
+    "labelfree": [
+      {
+        "prefix_fraction": 0.3,
+        "mean_basin": 1248.54,
+        "geomean_compression": 1.01,
+        "inclusion": 1.0,
+        "coverage": 1.0
+      },
+      {
+        "prefix_fraction": 0.4,
+        "mean_basin": 1212.77,
+        "geomean_compression": 1.08,
+        "inclusion": 1.0,
+        "coverage": 1.0
+      },
+      {
+        "prefix_fraction": 0.5,
+        "mean_basin": 1034.25,
+        "geomean_compression": 1.42,
+        "inclusion": 1.0,
+        "coverage": 1.0
+      },
+      {
+        "prefix_fraction": 0.6,
+        "mean_basin": 864.44,
+        "geomean_compression": 2.0,
+        "inclusion": 1.0,
+        "coverage": 1.0
+      },
+      {
+        "prefix_fraction": 0.7,
+        "mean_basin": 815.59,
+        "geomean_compression": 2.34,
+        "inclusion": 1.0,
+        "coverage": 1.0
+      },
+      {
+        "prefix_fraction": 0.8,
+        "mean_basin": 638.83,
+        "geomean_compression": 3.77,
+        "inclusion": 1.0,
+        "coverage": 1.0
+      },
+      {
+        "prefix_fraction": 0.9,
+        "mean_basin": 584.28,
+        "geomean_compression": 5.67,
+        "inclusion": 1.0,
+        "coverage": 1.0
+      },
+      {
+        "prefix_fraction": 1.0,
+        "mean_basin": 335.11,
+        "geomean_compression": 10.87,
+        "inclusion": 1.0,
+        "coverage": 1.0
+      }
+    ],
+    "typed": [
+      {
+        "prefix_fraction": 0.3,
+        "mean_basin": 1149.73,
+        "geomean_compression": 1.2,
+        "inclusion": 1.0,
+        "coverage": 1.0
+      },
+      {
+        "prefix_fraction": 0.4,
+        "mean_basin": 1115.41,
+        "geomean_compression": 1.28,
+        "inclusion": 1.0,
+        "coverage": 1.0
+      },
+      {
+        "prefix_fraction": 0.5,
+        "mean_basin": 946.44,
+        "geomean_compression": 1.68,
+        "inclusion": 1.0,
+        "coverage": 1.0
+      },
+      {
+        "prefix_fraction": 0.6,
+        "mean_basin": 789.15,
+        "geomean_compression": 2.37,
+        "inclusion": 1.0,
+        "coverage": 1.0
+      },
+      {
+        "prefix_fraction": 0.7,
+        "mean_basin": 743.85,
+        "geomean_compression": 2.76,
+        "inclusion": 1.0,
+        "coverage": 1.0
+      },
+      {
+        "prefix_fraction": 0.8,
+        "mean_basin": 580.03,
+        "geomean_compression": 4.45,
+        "inclusion": 1.0,
+        "coverage": 1.0
+      },
+      {
+        "prefix_fraction": 0.9,
+        "mean_basin": 530.75,
+        "geomean_compression": 6.67,
+        "inclusion": 1.0,
+        "coverage": 1.0
+      },
+      {
+        "prefix_fraction": 1.0,
+        "mean_basin": 298.85,
+        "geomean_compression": 12.74,
+        "inclusion": 1.0,
+        "coverage": 1.0
+      }
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "experiment": "fresh-domain-generalization-code-callgraphs",
+  "repos": [
+    "delta-top",
+    "rica",
+    "tdm",
+    "magi"
+  ],
+  "corpus": {
+    "n_walks": 2552,
+    "n_families": 109,
+    "family_size_stats": {
+      "min": 2,
+      "median": 4,
+      "max": 435,
+      "mean": 23.41
+    },
+    "walk_length_stats": {
+      "min": 3,
+      "median": 6,
+      "max": 21,
+      "mean": 5.54
+    }
+  },
+  "results": [
+    {
+      "method": "basin-retrieval (labelfree)",
+      "n_queries": 1297,
+      "store_size": 1255,
+      "mean_basin_size": 1034.25,
+      "median_basin_size": 1062,
+      "geomean_compression": 1.42,
+      "target_inclusion": 1.0,
+      "coverage": 1.0
+    },
+    {
+      "method": "basin-retrieval (typed)",
+      "n_queries": 1297,
+      "store_size": 1255,
+      "mean_basin_size": 946.44,
+      "median_basin_size": 1011,
+      "geomean_compression": 1.68,
+      "target_inclusion": 1.0,
+      "coverage": 1.0
+    },
+    {
+      "method": "token-prefix-hash (lexical)",
+      "n_queries": 1297,
+      "store_size": 1255,
+      "mean_basin_size": 0.07,
+      "median_basin_size": 0,
+      "geomean_compression": 540.5,
+      "target_inclusion": 0.0247,
+      "coverage": 0.0247
+    },
+    {
+      "method": "token-set-jaccard@0.5",
+      "n_queries": 1297,
+      "store_size": 1255,
+      "mean_basin_size": 7.73,
+      "median_basin_size": 0,
+      "geomean_compression": 82.23,
+      "target_inclusion": 0.2444,
+      "coverage": 0.2776
+    },
+    {
+      "method": "token-set-jaccard@0.3",
+      "n_queries": 1297,
+      "store_size": 1255,
+      "mean_basin_size": 15.67,
+      "median_basin_size": 0,
+      "geomean_compression": 66.31,
+      "target_inclusion": 0.3531,
+      "coverage": 0.4233
+    }
+  ]
+}
