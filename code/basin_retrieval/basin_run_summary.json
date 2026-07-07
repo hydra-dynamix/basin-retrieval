@@ -1,0 +1,36 @@
+{
+  "changed": [
+    "experiments/motif-topology-retrieval/relaxation.py",
+    "experiments/motif-topology-retrieval/generator.py (polysemy pairs)",
+    "experiments/motif-topology-retrieval/bench_relaxation.py"
+  ],
+  "commands": [
+    "python3 experiments/motif-topology-retrieval/bench_relaxation.py"
+  ],
+  "metrics": {
+    "typed": {
+      "n_instances": 20,
+      "inclusion_rate": 1.0,
+      "bundle_reduction_gmean": 34.0,
+      "stability_drop_all_mean": 0.125,
+      "stability_drop_interior_mean": 0.0,
+      "stability_corrupt_mean": 0.6929,
+      "basin_depth_drop_mean": 0.0,
+      "basin_depth_drop_max": 0
+    },
+    "labelfree": {
+      "n_instances": 20,
+      "inclusion_rate": 1.0,
+      "bundle_reduction_gmean": 34.0,
+      "stability_drop_all_mean": 0.1562,
+      "stability_drop_interior_mean": 0.05,
+      "stability_corrupt_mean": 0.2929,
+      "basin_depth_drop_mean": 0.15,
+      "basin_depth_drop_max": 2
+    }
+  },
+  "artifacts": [
+    "experiments/motif-topology-retrieval/basin_results.json",
+    "experiments/motif-topology-retrieval/basin_comparison.md"
+  ]
+}

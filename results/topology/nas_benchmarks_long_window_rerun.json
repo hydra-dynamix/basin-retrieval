@@ -1,0 +1,100 @@
+{
+  "abstained_queries": 0,
+  "consolidated_motifs": 6394,
+  "constrained_scores": 46678,
+  "covered_queries": 4051,
+  "db_count": 128,
+  "existing_requested_roots": [
+    "/mnt/nas/data/ldgr/benchmarks/splits/benchmarks"
+  ],
+  "extracted_sequences": 102804,
+  "mean_candidate_set_size": 11.522587,
+  "missing_requested_roots": [],
+  "query_sequences": 4051,
+  "search_reduction_factor": 554.910108,
+  "top_event_tokens": [
+    [
+      "run:phase",
+      12978
+    ],
+    [
+      "observation:add:failure",
+      8114
+    ],
+    [
+      "work_item:create",
+      7174
+    ],
+    [
+      "artifact:add:report",
+      7057
+    ],
+    [
+      "work_item:start_run",
+      6383
+    ],
+    [
+      "run:start",
+      6383
+    ],
+    [
+      "work_item:finish",
+      6213
+    ],
+    [
+      "run:end:pass",
+      5668
+    ],
+    [
+      "observation:add:note",
+      4106
+    ],
+    [
+      "artifact:add:validator",
+      3047
+    ],
+    [
+      "observation:add:result",
+      2734
+    ],
+    [
+      "decision:record:validated",
+      2254
+    ],
+    [
+      "artifact:add:result",
+      1854
+    ],
+    [
+      "artifact:add:other",
+      1286
+    ],
+    [
+      "decision:record:continue",
+      1269
+    ],
+    [
+      "observation:add:constraint",
+      1239
+    ],
+    [
+      "decision:record:stop",
+      1221
+    ],
+    [
+      "global_observation:add",
+      1125
+    ],
+    [
+      "tool:run",
+      1040
+    ],
+    [
+      "observation:add:data",
+      864
+    ]
+  ],
+  "training_sequences": 98753,
+  "true_inclusion_rate": 1.0,
+  "unconstrained_scores": 25902094
+}

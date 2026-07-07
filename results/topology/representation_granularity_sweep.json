@@ -1,0 +1,682 @@
+{
+  "bound": 100,
+  "candidate_cost": 0.005,
+  "corpus": "/mnt/nas/data/ldgr/benchmarks/splits/benchmarks",
+  "max_len": 36,
+  "min_len": 30,
+  "modes": [
+    {
+      "compression_ratio": 2.161092,
+      "consolidated_motifs": 6009,
+      "db_count": 128,
+      "extracted_sequences": 102804,
+      "mixed_bad_abstentions": 0,
+      "mixed_coverage": 0.818766,
+      "mixed_false_answers": 154,
+      "mixed_good_abstentions": 846,
+      "mixed_hit_rate_when_answered": 0.959707,
+      "mixed_mean_candidate_set_size": 10.776818,
+      "mixed_utility_per_query": 0.725162,
+      "mode": "entity",
+      "repeated_coverage": 1.0,
+      "repeated_hit_rate": 1.0,
+      "repeated_mean_candidate_set_size": 10.475736,
+      "repeated_query_count": 3668,
+      "repeated_utility_per_query": 0.947621,
+      "singleton_query_count": 1000,
+      "top_tokens": [
+        [
+          "run",
+          25711
+        ],
+        [
+          "work_item",
+          21611
+        ],
+        [
+          "observation",
+          17840
+        ],
+        [
+          "artifact",
+          14273
+        ],
+        [
+          "decision",
+          6171
+        ],
+        [
+          "tool",
+          1460
+        ],
+        [
+          "global_observation",
+          1125
+        ],
+        [
+          "fact_evidence",
+          787
+        ],
+        [
+          "validation_result",
+          619
+        ],
+        [
+          "fact",
+          590
+        ],
+        [
+          "expectation",
+          407
+        ],
+        [
+          "milestone",
+          390
+        ],
+        [
+          "prompt",
+          164
+        ],
+        [
+          "loop_intervention",
+          148
+        ],
+        [
+          "issue",
+          77
+        ]
+      ],
+      "training_sequences": 99136,
+      "unique_token_count": 21
+    },
+    {
+      "compression_ratio": 2.170895,
+      "consolidated_motifs": 5992,
+      "db_count": 128,
+      "extracted_sequences": 102804,
+      "mixed_bad_abstentions": 0,
+      "mixed_coverage": 0.815517,
+      "mixed_false_answers": 144,
+      "mixed_good_abstentions": 856,
+      "mixed_hit_rate_when_answered": 0.961945,
+      "mixed_mean_candidate_set_size": 11.056818,
+      "mixed_utility_per_query": 0.72388,
+      "mode": "coarse",
+      "repeated_coverage": 1.0,
+      "repeated_hit_rate": 1.0,
+      "repeated_mean_candidate_set_size": 10.937912,
+      "repeated_query_count": 3640,
+      "repeated_utility_per_query": 0.94531,
+      "singleton_query_count": 1000,
+      "top_tokens": [
+        [
+          "observation:add",
+          17840
+        ],
+        [
+          "artifact:add",
+          14273
+        ],
+        [
+          "run:phase",
+          12978
+        ],
+        [
+          "work_item:create",
+          7174
+        ],
+        [
+          "work_item:start_run",
+          6383
+        ],
+        [
+          "run:start",
+          6383
+        ],
+        [
+          "run:finish",
+          6350
+        ],
+        [
+          "work_item:finish",
+          6213
+        ],
+        [
+          "decision:record",
+          6155
+        ],
+        [
+          "global_observation:add",
+          1125
+        ],
+        [
+          "tool:run",
+          1040
+        ],
+        [
+          "work_item:cancel",
+          831
+        ],
+        [
+          "fact_evidence:add",
+          787
+        ],
+        [
+          "validation_result:record",
+          619
+        ],
+        [
+          "work_item:hold",
+          593
+        ]
+      ],
+      "training_sequences": 99164,
+      "unique_token_count": 42
+    },
+    {
+      "compression_ratio": 2.114952,
+      "consolidated_motifs": 6394,
+      "db_count": 128,
+      "extracted_sequences": 102804,
+      "mixed_bad_abstentions": 0,
+      "mixed_coverage": 0.850327,
+      "mixed_false_answers": 244,
+      "mixed_good_abstentions": 756,
+      "mixed_hit_rate_when_answered": 0.94319,
+      "mixed_mean_candidate_set_size": 11.918976,
+      "mixed_utility_per_query": 0.727191,
+      "mode": "refined",
+      "repeated_coverage": 1.0,
+      "repeated_hit_rate": 1.0,
+      "repeated_mean_candidate_set_size": 11.522587,
+      "repeated_query_count": 4051,
+      "repeated_utility_per_query": 0.942387,
+      "singleton_query_count": 1000,
+      "top_tokens": [
+        [
+          "run:phase",
+          12978
+        ],
+        [
+          "observation:add:failure",
+          8114
+        ],
+        [
+          "work_item:create",
+          7174
+        ],
+        [
+          "artifact:add:report",
+          7057
+        ],
+        [
+          "work_item:start_run",
+          6383
+        ],
+        [
+          "run:start",
+          6383
+        ],
+        [
+          "work_item:finish",
+          6213
+        ],
+        [
+          "run:end:pass",
+          5668
+        ],
+        [
+          "observation:add:note",
+          4106
+        ],
+        [
+          "artifact:add:validator",
+          3047
+        ],
+        [
+          "observation:add:result",
+          2734
+        ],
+        [
+          "decision:record:validated",
+          2254
+        ],
+        [
+          "artifact:add:result",
+          1854
+        ],
+        [
+          "artifact:add:other",
+          1286
+        ],
+        [
+          "decision:record:continue",
+          1269
+        ]
+      ],
+      "training_sequences": 98753,
+      "unique_token_count": 60
+    },
+    {
+      "compression_ratio": 2.112971,
+      "consolidated_motifs": 6391,
+      "db_count": 128,
+      "extracted_sequences": 102804,
+      "mixed_bad_abstentions": 43,
+      "mixed_coverage": 0.852248,
+      "mixed_false_answers": 297,
+      "mixed_good_abstentions": 703,
+      "mixed_hit_rate_when_answered": 0.930978,
+      "mixed_mean_candidate_set_size": 15.590518,
+      "mixed_utility_per_query": 0.695449,
+      "mode": "phase_refined",
+      "repeated_coverage": 0.98938,
+      "repeated_hit_rate": 1.0,
+      "repeated_mean_candidate_set_size": 14.889915,
+      "repeated_query_count": 4049,
+      "repeated_utility_per_query": 0.913066,
+      "singleton_query_count": 1000,
+      "top_tokens": [
+        [
+          "observation:add:failure",
+          8114
+        ],
+        [
+          "work_item:create",
+          7174
+        ],
+        [
+          "artifact:add:report",
+          7057
+        ],
+        [
+          "work_item:start_run",
+          6383
+        ],
+        [
+          "run:start",
+          6383
+        ],
+        [
+          "work_item:finish",
+          6213
+        ],
+        [
+          "run:end:pass",
+          5668
+        ],
+        [
+          "observation:add:note",
+          4106
+        ],
+        [
+          "artifact:add:validator",
+          3047
+        ],
+        [
+          "observation:add:result",
+          2734
+        ],
+        [
+          "run:phase:started",
+          2675
+        ],
+        [
+          "run:phase:rendering_prompt",
+          2675
+        ],
+        [
+          "run:phase:running_agent",
+          2638
+        ],
+        [
+          "run:phase:capturing_agent_output",
+          2398
+        ],
+        [
+          "run:phase:finishing",
+          2398
+        ]
+      ],
+      "training_sequences": 98755,
+      "unique_token_count": 67
+    },
+    {
+      "compression_ratio": 2.159636,
+      "consolidated_motifs": 6377,
+      "db_count": 128,
+      "extracted_sequences": 102804,
+      "mixed_bad_abstentions": 0,
+      "mixed_coverage": 0.851469,
+      "mixed_false_answers": 252,
+      "mixed_good_abstentions": 748,
+      "mixed_hit_rate_when_answered": 0.941231,
+      "mixed_mean_candidate_set_size": 12.075093,
+      "mixed_utility_per_query": 0.725002,
+      "mode": "status_refined",
+      "repeated_coverage": 1.0,
+      "repeated_hit_rate": 1.0,
+      "repeated_mean_candidate_set_size": 11.692765,
+      "repeated_query_count": 4036,
+      "repeated_utility_per_query": 0.941536,
+      "singleton_query_count": 1000,
+      "top_tokens": [
+        [
+          "run:phase:status:success",
+          12602
+        ],
+        [
+          "observation:add:failure",
+          8114
+        ],
+        [
+          "artifact:add:report",
+          7057
+        ],
+        [
+          "work_item:start_run:status:done",
+          6317
+        ],
+        [
+          "work_item:create:status:done",
+          6236
+        ],
+        [
+          "work_item:finish:status:done",
+          6213
+        ],
+        [
+          "run:start:status:success",
+          5675
+        ],
+        [
+          "run:end:pass:status:success",
+          5668
+        ],
+        [
+          "observation:add:note",
+          4106
+        ],
+        [
+          "artifact:add:validator",
+          3047
+        ],
+        [
+          "observation:add:result",
+          2734
+        ],
+        [
+          "decision:record:validated",
+          2254
+        ],
+        [
+          "artifact:add:result",
+          1854
+        ],
+        [
+          "artifact:add:other",
+          1286
+        ],
+        [
+          "decision:record:continue",
+          1269
+        ]
+      ],
+      "training_sequences": 98768,
+      "unique_token_count": 78
+    },
+    {
+      "compression_ratio": 2.109492,
+      "consolidated_motifs": 6384,
+      "db_count": 128,
+      "extracted_sequences": 102804,
+      "mixed_bad_abstentions": 0,
+      "mixed_coverage": 0.846503,
+      "mixed_false_answers": 223,
+      "mixed_good_abstentions": 777,
+      "mixed_hit_rate_when_answered": 0.947958,
+      "mixed_mean_candidate_set_size": 11.776663,
+      "mixed_utility_per_query": 0.730578,
+      "mode": "artifact_ext_refined",
+      "repeated_coverage": 1.0,
+      "repeated_hit_rate": 1.0,
+      "repeated_mean_candidate_set_size": 11.565731,
+      "repeated_query_count": 4062,
+      "repeated_utility_per_query": 0.942171,
+      "singleton_query_count": 1000,
+      "top_tokens": [
+        [
+          "run:phase",
+          12978
+        ],
+        [
+          "observation:add:failure",
+          8114
+        ],
+        [
+          "work_item:create",
+          7174
+        ],
+        [
+          "artifact:add:report:ext:doc",
+          7044
+        ],
+        [
+          "work_item:start_run",
+          6383
+        ],
+        [
+          "run:start",
+          6383
+        ],
+        [
+          "work_item:finish",
+          6213
+        ],
+        [
+          "run:end:pass",
+          5668
+        ],
+        [
+          "observation:add:note",
+          4106
+        ],
+        [
+          "observation:add:result",
+          2734
+        ],
+        [
+          "decision:record:validated",
+          2254
+        ],
+        [
+          "artifact:add:validator:ext:doc",
+          2155
+        ],
+        [
+          "artifact:add:result:ext:data",
+          1687
+        ],
+        [
+          "decision:record:continue",
+          1269
+        ],
+        [
+          "observation:add:constraint",
+          1239
+        ]
+      ],
+      "training_sequences": 98742,
+      "unique_token_count": 98
+    },
+    {
+      "compression_ratio": 2.117978,
+      "consolidated_motifs": 6391,
+      "db_count": 128,
+      "extracted_sequences": 102804,
+      "mixed_bad_abstentions": 0,
+      "mixed_coverage": 0.844343,
+      "mixed_false_answers": 213,
+      "mixed_good_abstentions": 787,
+      "mixed_hit_rate_when_answered": 0.950105,
+      "mixed_mean_candidate_set_size": 11.605997,
+      "mixed_utility_per_query": 0.732154,
+      "mode": "command_refined",
+      "repeated_coverage": 1.0,
+      "repeated_hit_rate": 1.0,
+      "repeated_mean_candidate_set_size": 11.308925,
+      "repeated_query_count": 4056,
+      "repeated_utility_per_query": 0.943455,
+      "singleton_query_count": 1000,
+      "top_tokens": [
+        [
+          "run:phase",
+          12978
+        ],
+        [
+          "observation:add:failure",
+          8114
+        ],
+        [
+          "work_item:create",
+          7174
+        ],
+        [
+          "artifact:add:report",
+          7057
+        ],
+        [
+          "work_item:start_run",
+          6383
+        ],
+        [
+          "work_item:finish",
+          6213
+        ],
+        [
+          "run:end:pass",
+          5668
+        ],
+        [
+          "run:start:other",
+          5468
+        ],
+        [
+          "observation:add:note",
+          4106
+        ],
+        [
+          "artifact:add:validator",
+          3047
+        ],
+        [
+          "observation:add:result",
+          2734
+        ],
+        [
+          "decision:record:validated",
+          2254
+        ],
+        [
+          "artifact:add:result",
+          1854
+        ],
+        [
+          "artifact:add:other",
+          1286
+        ],
+        [
+          "decision:record:continue",
+          1269
+        ]
+      ],
+      "training_sequences": 98748,
+      "unique_token_count": 64
+    },
+    {
+      "compression_ratio": 2.15566,
+      "consolidated_motifs": 6360,
+      "db_count": 128,
+      "extracted_sequences": 102804,
+      "mixed_bad_abstentions": 66,
+      "mixed_coverage": 0.850377,
+      "mixed_false_answers": 311,
+      "mixed_good_abstentions": 689,
+      "mixed_hit_rate_when_answered": 0.927523,
+      "mixed_mean_candidate_set_size": 15.028432,
+      "mixed_utility_per_query": 0.690758,
+      "mode": "full_categorical",
+      "repeated_coverage": 0.983688,
+      "repeated_hit_rate": 1.0,
+      "repeated_mean_candidate_set_size": 14.453769,
+      "repeated_query_count": 4046,
+      "repeated_utility_per_query": 0.90852,
+      "singleton_query_count": 1000,
+      "top_tokens": [
+        [
+          "observation:add:failure",
+          8114
+        ],
+        [
+          "artifact:add:report:ext:doc",
+          7044
+        ],
+        [
+          "work_item:start_run:status:done",
+          6317
+        ],
+        [
+          "work_item:create:status:done",
+          6236
+        ],
+        [
+          "work_item:finish:status:done",
+          6213
+        ],
+        [
+          "run:end:pass:status:success",
+          5668
+        ],
+        [
+          "run:start:status:success:cmd:other",
+          4853
+        ],
+        [
+          "observation:add:note",
+          4106
+        ],
+        [
+          "observation:add:result",
+          2734
+        ],
+        [
+          "run:phase:phase:started:status:success",
+          2569
+        ],
+        [
+          "run:phase:phase:rendering_prompt:status:success",
+          2569
+        ],
+        [
+          "run:phase:phase:running_agent:status:success",
+          2569
+        ],
+        [
+          "run:phase:phase:capturing_agent_output:status:success",
+          2375
+        ],
+        [
+          "run:phase:phase:finishing:status:success",
+          2375
+        ],
+        [
+          "decision:record:validated",
+          2254
+        ]
+      ],
+      "training_sequences": 98758,
+      "unique_token_count": 147
+    }
+  ],
+  "stride": 6
+}

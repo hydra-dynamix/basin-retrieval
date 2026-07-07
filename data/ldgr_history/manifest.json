@@ -1,0 +1,6 @@
+{
+  "observations": 17,
+  "artifacts": 40,
+  "source": "episteme/.ldgr/ldgr.db",
+  "note": "LDGR project history used as memory content in behavioral_relevance and payload_graph_refinement experiments"
+}

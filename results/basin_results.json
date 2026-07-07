@@ -1,0 +1,1611 @@
+{
+  "experiment": "basin-stability-and-polysemy",
+  "branch": "unlabeled-basin-relaxation",
+  "relaxation_rule": "discrete prefix-consistency pruning (elimination, not graded settling)",
+  "aggregate": {
+    "typed": {
+      "n_instances": 20,
+      "inclusion_rate": 1.0,
+      "bundle_reduction_gmean": 34.0,
+      "stability_drop_all_mean": 0.125,
+      "stability_drop_interior_mean": 0.0,
+      "stability_corrupt_mean": 0.6929,
+      "basin_depth_drop_mean": 0.0,
+      "basin_depth_drop_max": 0
+    },
+    "labelfree": {
+      "n_instances": 20,
+      "inclusion_rate": 1.0,
+      "bundle_reduction_gmean": 34.0,
+      "stability_drop_all_mean": 0.1562,
+      "stability_drop_interior_mean": 0.05,
+      "stability_corrupt_mean": 0.2929,
+      "basin_depth_drop_mean": 0.15,
+      "basin_depth_drop_max": 2
+    }
+  },
+  "polysemy": {
+    "typed": [
+      {
+        "pair_id": 0,
+        "family_a": "poly_A_000",
+        "family_b": "poly_B_000",
+        "share_k": 4,
+        "both_active_on_shared": true,
+        "correct_dominates_after_one": true,
+        "ambiguity_retained_on_missing": true,
+        "active_on_shared": 4,
+        "families_on_shared": 2
+      },
+      {
+        "pair_id": 1,
+        "family_a": "poly_A_001",
+        "family_b": "poly_B_001",
+        "share_k": 4,
+        "both_active_on_shared": true,
+        "correct_dominates_after_one": true,
+        "ambiguity_retained_on_missing": true,
+        "active_on_shared": 4,
+        "families_on_shared": 2
+      },
+      {
+        "pair_id": 2,
+        "family_a": "poly_A_002",
+        "family_b": "poly_B_002",
+        "share_k": 4,
+        "both_active_on_shared": true,
+        "correct_dominates_after_one": true,
+        "ambiguity_retained_on_missing": true,
+        "active_on_shared": 4,
+        "families_on_shared": 2
+      },
+      {
+        "pair_id": 3,
+        "family_a": "poly_A_003",
+        "family_b": "poly_B_003",
+        "share_k": 4,
+        "both_active_on_shared": true,
+        "correct_dominates_after_one": true,
+        "ambiguity_retained_on_missing": true,
+        "active_on_shared": 4,
+        "families_on_shared": 2
+      },
+      {
+        "pair_id": 4,
+        "family_a": "poly_A_004",
+        "family_b": "poly_B_004",
+        "share_k": 4,
+        "both_active_on_shared": true,
+        "correct_dominates_after_one": true,
+        "ambiguity_retained_on_missing": true,
+        "active_on_shared": 4,
+        "families_on_shared": 2
+      },
+      {
+        "pair_id": 5,
+        "family_a": "poly_A_005",
+        "family_b": "poly_B_005",
+        "share_k": 4,
+        "both_active_on_shared": true,
+        "correct_dominates_after_one": true,
+        "ambiguity_retained_on_missing": true,
+        "active_on_shared": 4,
+        "families_on_shared": 2
+      },
+      {
+        "pair_id": 6,
+        "family_a": "poly_A_006",
+        "family_b": "poly_B_006",
+        "share_k": 4,
+        "both_active_on_shared": true,
+        "correct_dominates_after_one": true,
+        "ambiguity_retained_on_missing": true,
+        "active_on_shared": 4,
+        "families_on_shared": 2
+      }
+    ],
+    "labelfree": [
+      {
+        "pair_id": 0,
+        "family_a": "poly_A_000",
+        "family_b": "poly_B_000",
+        "share_k": 4,
+        "both_active_on_shared": true,
+        "correct_dominates_after_one": false,
+        "ambiguity_retained_on_missing": true,
+        "active_on_shared": 14,
+        "families_on_shared": 7
+      },
+      {
+        "pair_id": 1,
+        "family_a": "poly_A_001",
+        "family_b": "poly_B_001",
+        "share_k": 4,
+        "both_active_on_shared": true,
+        "correct_dominates_after_one": true,
+        "ambiguity_retained_on_missing": true,
+        "active_on_shared": 4,
+        "families_on_shared": 2
+      },
+      {
+        "pair_id": 2,
+        "family_a": "poly_A_002",
+        "family_b": "poly_B_002",
+        "share_k": 4,
+        "both_active_on_shared": true,
+        "correct_dominates_after_one": false,
+        "ambiguity_retained_on_missing": true,
+        "active_on_shared": 8,
+        "families_on_shared": 4
+      },
+      {
+        "pair_id": 3,
+        "family_a": "poly_A_003",
+        "family_b": "poly_B_003",
+        "share_k": 4,
+        "both_active_on_shared": true,
+        "correct_dominates_after_one": true,
+        "ambiguity_retained_on_missing": true,
+        "active_on_shared": 14,
+        "families_on_shared": 7
+      },
+      {
+        "pair_id": 4,
+        "family_a": "poly_A_004",
+        "family_b": "poly_B_004",
+        "share_k": 4,
+        "both_active_on_shared": true,
+        "correct_dominates_after_one": false,
+        "ambiguity_retained_on_missing": true,
+        "active_on_shared": 14,
+        "families_on_shared": 7
+      },
+      {
+        "pair_id": 5,
+        "family_a": "poly_A_005",
+        "family_b": "poly_B_005",
+        "share_k": 4,
+        "both_active_on_shared": true,
+        "correct_dominates_after_one": false,
+        "ambiguity_retained_on_missing": true,
+        "active_on_shared": 14,
+        "families_on_shared": 7
+      },
+      {
+        "pair_id": 6,
+        "family_a": "poly_A_006",
+        "family_b": "poly_B_006",
+        "share_k": 4,
+        "both_active_on_shared": true,
+        "correct_dominates_after_one": false,
+        "ambiguity_retained_on_missing": true,
+        "active_on_shared": 14,
+        "families_on_shared": 7
+      }
+    ]
+  },
+  "n_disjoint_families": 20,
+  "n_polysemy_pairs": 7,
+  "family_results_typed": [
+    {
+      "family": "gen_000",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_000",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.5714,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_000",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_001",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_001",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.7143,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_001",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_002",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_002",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.7143,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_002",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_003",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_003",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.8571,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_003",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_004",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_004",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.5714,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_004",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_005",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_005",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.7143,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_005",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_006",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_006",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.7143,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_006",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_007",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_007",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.7143,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_007",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_008",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_008",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.5714,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_008",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_009",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_009",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.7143,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_009",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_010",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_010",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.7143,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_010",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_011",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_011",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.7143,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_011",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_012",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_012",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.7143,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_012",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_013",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_013",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.7143,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_013",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_014",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_014",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.7143,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_014",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_015",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_015",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.7143,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_015",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_016",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_016",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.5714,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_016",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_017",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_017",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.7143,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_017",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_018",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_018",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.7143,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_018",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    },
+    {
+      "family": "gen_019",
+      "variant": "typed",
+      "walk_len": 9,
+      "full_dominant": "gen_019",
+      "inclusion": true,
+      "bundle_size_full": 2,
+      "bundle_reduction": 34.0,
+      "stability_drop_all": 0.125,
+      "stability_drop_interior": 0.0,
+      "stability_corrupt": 0.7143,
+      "basin_depth_drop": 0,
+      "per_step_drop": [
+        {
+          "dropped_step": 1,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 2,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 3,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 4,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 5,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 6,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 7,
+          "dominant_after": null,
+          "n_active_after": 0,
+          "n_families_after": 0,
+          "survived": false
+        },
+        {
+          "dropped_step": 8,
+          "dominant_after": "gen_019",
+          "n_active_after": 2,
+          "n_families_after": 1,
+          "survived": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "abstained_queries": 735,
+  "consolidated_motifs": 1363,
+  "constrained_scores": 78,
+  "covered_queries": 10,
+  "db_count": 28,
+  "existing_requested_roots": [
+    "/home/bakobi/repos"
+  ],
+  "extracted_sequences": 11495,
+  "mean_candidate_set_size": 7.8,
+  "missing_requested_roots": [
+    "/mnt/d/apps/benchmarks",
+    "/mnt/d/apps/ldgr-bench",
+    "/mnt/e/apps/ldgr-bench",
+    "/mnt/e/apps/benchmarks",
+    "/home/bakobi/repos/benchmarks2",
+    "/home/bakobi/repos/benchmarks",
+    "/home/bakobi/repos/ldgr-bench"
+  ],
+  "query_sequences": 745,
+  "search_reduction_factor": 13018.397436,
+  "top_event_tokens": [
+    [
+      "run:phase",
+      579
+    ],
+    [
+      "artifact:add:report",
+      531
+    ],
+    [
+      "work_item:create",
+      469
+    ],
+    [
+      "observation:add:note",
+      428
+    ],
+    [
+      "observation:add:result",
+      404
+    ],
+    [
+      "work_item:start_run",
+      402
+    ],
+    [
+      "run:start",
+      402
+    ],
+    [
+      "work_item:finish",
+      340
+    ],
+    [
+      "run:end:pass",
+      296
+    ],
+    [
+      "artifact:add:result",
+      229
+    ],
+    [
+      "observation:add:implementation",
+      156
+    ],
+    [
+      "fact_evidence:add",
+      146
+    ],
+    [
+      "tool:register",
+      144
+    ],
+    [
+      "observation:add:failure",
+      140
+    ],
+    [
+      "decision:record:continue",
+      128
+    ],
+    [
+      "observation:add:constraint",
+      115
+    ],
+    [
+      "target_probe_family:create",
+      103
+    ],
+    [
+      "run:end:partial",
+      99
+    ],
+    [
+      "artifact:add:validator",
+      95
+    ],
+    [
+      "validation_result:record",
+      86
+    ]
+  ],
+  "training_sequences": 10750,
+  "true_inclusion_rate": 1.0,
+  "unconstrained_scores": 1015435
+}

@@ -1,0 +1,160 @@
+{
+  "boundary": "Promoted dual lookup control experiment. It compares labeled semantic lookup, unlabeled basin lookup with post-hoc label alignment, and a combined perturbation path after trajectory motif retrieval.",
+  "choice_counts": {
+    "combined_agreement": {
+      "counter_expand": 1,
+      "expand": 1,
+      "stabilize": 1
+    },
+    "combined_union": {
+      "defend": 1,
+      "expand": 2
+    },
+    "labeled": {
+      "expand": 1,
+      "stabilize": 2
+    },
+    "no_semantic": {
+      "stabilize": 3
+    },
+    "oracle": {
+      "counter_expand": 1,
+      "expand": 1,
+      "stabilize": 1
+    },
+    "unlabeled": {
+      "counter_expand": 1,
+      "expand": 1,
+      "stabilize": 1
+    }
+  },
+  "combined_agreement_lift_vs_labeled": 0.3,
+  "combined_agreement_lift_vs_no_semantic": 0.466667,
+  "combined_agreement_oracle_gap": 0.0,
+  "combined_union_lift_vs_labeled": -0.133333,
+  "combined_union_lift_vs_no_semantic": 0.033334,
+  "combined_union_oracle_gap": 0.433333,
+  "control_records": "/home/bakobi/repos/bako/research/ecphory-2/results/promoted-dual-lookup-control/control_records.jsonl",
+  "labeled_lift_vs_no_semantic": 0.166667,
+  "mean_utilities": {
+    "combined_agreement": 1.0,
+    "combined_union": 0.566667,
+    "labeled": 0.7,
+    "no_semantic": 0.533333,
+    "oracle": 1.0,
+    "unlabeled": 1.0
+  },
+  "query_count": 3,
+  "schema_version": "promoted-dual-lookup-control-report/v1",
+  "top_k": 10,
+  "top_k_sweep": [
+    {
+      "combined_agreement_lift_vs_labeled": 0.233333,
+      "combined_union_lift_vs_labeled": 0.0,
+      "mean_utilities": {
+        "combined_agreement": 0.933333,
+        "combined_union": 0.7,
+        "labeled": 0.7,
+        "no_semantic": 0.533333,
+        "oracle": 1.0,
+        "unlabeled": 0.933333
+      },
+      "query_count": 3,
+      "top_k": 1,
+      "unlabeled_lift_vs_labeled": 0.233333
+    },
+    {
+      "combined_agreement_lift_vs_labeled": 0.233333,
+      "combined_union_lift_vs_labeled": -0.133333,
+      "mean_utilities": {
+        "combined_agreement": 0.933333,
+        "combined_union": 0.566667,
+        "labeled": 0.7,
+        "no_semantic": 0.533333,
+        "oracle": 1.0,
+        "unlabeled": 0.933333
+      },
+      "query_count": 3,
+      "top_k": 2,
+      "unlabeled_lift_vs_labeled": 0.233333
+    },
+    {
+      "combined_agreement_lift_vs_labeled": 0.233333,
+      "combined_union_lift_vs_labeled": -0.133333,
+      "mean_utilities": {
+        "combined_agreement": 0.933333,
+        "combined_union": 0.566667,
+        "labeled": 0.7,
+        "no_semantic": 0.533333,
+        "oracle": 1.0,
+        "unlabeled": 0.933333
+      },
+      "query_count": 3,
+      "top_k": 3,
+      "unlabeled_lift_vs_labeled": 0.233333
+    },
+    {
+      "combined_agreement_lift_vs_labeled": 0.233333,
+      "combined_union_lift_vs_labeled": -0.133333,
+      "mean_utilities": {
+        "combined_agreement": 0.933333,
+        "combined_union": 0.566667,
+        "labeled": 0.7,
+        "no_semantic": 0.533333,
+        "oracle": 1.0,
+        "unlabeled": 0.933333
+      },
+      "query_count": 3,
+      "top_k": 4,
+      "unlabeled_lift_vs_labeled": 0.233333
+    },
+    {
+      "combined_agreement_lift_vs_labeled": -0.133333,
+      "combined_union_lift_vs_labeled": -0.133333,
+      "mean_utilities": {
+        "combined_agreement": 0.566667,
+        "combined_union": 0.566667,
+        "labeled": 0.7,
+        "no_semantic": 0.533333,
+        "oracle": 1.0,
+        "unlabeled": 0.566667
+      },
+      "query_count": 3,
+      "top_k": 5,
+      "unlabeled_lift_vs_labeled": -0.133333
+    },
+    {
+      "combined_agreement_lift_vs_labeled": 0.233333,
+      "combined_union_lift_vs_labeled": -0.133333,
+      "mean_utilities": {
+        "combined_agreement": 0.933333,
+        "combined_union": 0.566667,
+        "labeled": 0.7,
+        "no_semantic": 0.533333,
+        "oracle": 1.0,
+        "unlabeled": 0.933333
+      },
+      "query_count": 3,
+      "top_k": 8,
+      "unlabeled_lift_vs_labeled": 0.233333
+    },
+    {
+      "combined_agreement_lift_vs_labeled": 0.3,
+      "combined_union_lift_vs_labeled": -0.133333,
+      "mean_utilities": {
+        "combined_agreement": 1.0,
+        "combined_union": 0.566667,
+        "labeled": 0.7,
+        "no_semantic": 0.533333,
+        "oracle": 1.0,
+        "unlabeled": 1.0
+      },
+      "query_count": 3,
+      "top_k": 10,
+      "unlabeled_lift_vs_labeled": 0.3
+    }
+  ],
+  "unlabeled_lift_vs_labeled": 0.3,
+  "unlabeled_lift_vs_no_semantic": 0.466667,
+  "unlabeled_records": "/home/bakobi/repos/bako/research/ecphory-2/results/promoted-dual-lookup-control/unlabeled_records.jsonl"
+}
