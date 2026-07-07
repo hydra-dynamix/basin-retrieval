@@ -1,4 +1,4 @@
-# Basin Retrieval: Structural Compatibility as a First-Stage Search-Space Compression Operator
+# Basin Retrieval: First-Stage Search-Space Compression Through Structural Compatibility
 
 ## Abstract
 
@@ -20,23 +20,23 @@ Conventional retrieval pipelines try to solve two problems at once: find the cor
 
 ### The alternative
 
-Instead of asking
+Conventional retrieval asks
 
 > Which item is correct?
 
-we ask a prior, cheaper question:
+We argue the first stage should ask a cheaper question instead. Correctness becomes the downstream stage's job; the first stage is responsible only for compatibility — returning a small set that preserves the target while eliminating everything structurally incompatible. We call this candidate-space compression. The method is a success when the basin is small and the target is in it, not when the target is ranked first.
+
+The contribution of this paper is an operator that does exactly this for relational data, using a semantically indifferent structural key. The design choice that makes it work is negative: do not let semantic labels define the first-pass neighborhood. The operator is not a semantic retrieval system and does not try to be.
+
+So the question the first stage answers is simply:
 
 > Which small set of items could still be correct?
-
-That reframing changes the retrieval objective. Correctness becomes the downstream stage's job; the first stage is responsible only for compatibility — returning a small bounded set guaranteed to contain the target while eliminating everything structurally incompatible. We call this candidate-space compression. The method should be considered a success when the basin is small and the target is in it, not when the target is ranked first.
-
-The contribution of this paper is an operator that does exactly this for relational data, using a semantically indifferent structural key. The design choice that makes it work is negative: do not let semantic labels define the first-pass neighborhood.
 
 ### Contributions
 
 This paper contributes:
 
-- a **structural retrieval operator** for basin formation — a semantically indifferent first stage that compresses the candidate space;
+- a **first-stage structural retrieval operator that compresses search spaces into bounded compatible basins** — semantically indifferent, and evaluated by whether the target is preserved in the retrieved basin;
 - a measured compression envelope (34× on synthetic relational families, 32× on project history, up to 554× on temporal traces, with perfect target inclusion throughout).
 
 ---
@@ -51,7 +51,13 @@ The first goal is **find one object**. The system is scored on whether the corre
 
 ### 2.2 Compatibility retrieval
 
-The second goal is **find all compatible continuations**. Given a partial query, the system should return the bounded set of items that remain possible — structurally consistent with everything observed so far — and aggressively discard everything that is not. The metric changes accordingly:
+The second goal is **find all compatible continuations**. Given a partial query, the system should return the bounded set of items that remain possible — structurally consistent with everything observed so far — and aggressively discard everything that is not. We use two terms in a precise sense throughout:
+
+> Two items are **compatible** if their canonical structural signatures remain consistent with the observed query prefix. Compatibility is a property of signature prefixes, not of semantic similarity, graph isomorphism, or prediction; the canonical signature is defined in Section 4.2.
+
+> Throughout this paper, a basin is **bounded** if its size scales substantially below the indexed corpus. We mean empirically small relative to the store, not mathematically bounded.
+
+The metric changes accordingly:
 
 > small basin × target retained
 
@@ -97,8 +103,8 @@ We now describe the method conceptually, before any implementation detail. The o
                                  ▼
               ┌──────────────────────────────────────┐
               │   compatible basin                   │   bounded set
-              │   (small active set, target          │   containing
-              │    retained by construction)         │   the target
+              │   (small active set,                 │   preserving the
+              │    target preserved)                 │   target
               └──────────────────┬───────────────────┘
                                  │
                                  ▼
@@ -219,7 +225,7 @@ LLM  →  structural basin retrieval  →  semantic retrieval  →  reasoning
 
 The basin-retrieval stage is a first-stage search-space reduction. It does not identify the answer; it removes everything structurally incompatible, leaving a small bounded basin that a downstream semantic or reasoning stage can afford to process in full. Because the first stage is semantically indifferent, it does not pay the cost of semantic specificity where that cost is purely harmful, and it does not fragment the neighborhoods the downstream stage will need.
 
-This reframes what a retrieval stage is for. The first stage's job is not to be smart; it is to be cheap and safe — to compress aggressively while guaranteeing the target survives. Smart discrimination belongs later, over a basin small enough to afford it. The compression results in Section 6 say that cheap-and-safe is achievable: 34× on relational data, 554× on temporal traces, with perfect inclusion. Downstream stages receive a tractable candidate set rather than a corpus.
+This reframes what a retrieval stage is for. The first stage's job is not to be smart; it is to be cheap and safe — to compress aggressively while keeping the target in the basin. Smart discrimination belongs later, over a basin small enough to afford it. The compression results in Section 6 say that cheap-and-safe is achievable: 34× on relational data, 554× on temporal traces, with perfect inclusion. Downstream stages receive a tractable candidate set rather than a corpus.
 
 Two observations from development that motivate the design but fall outside this paper's scope:
 
@@ -245,7 +251,7 @@ We are deliberately blunt here, because honest boundaries are what make a compre
 
 ## 9. Conclusion
 
-Structural compatibility is a different retrieval objective than semantic identity. By separating those objectives, a semantically indifferent first-stage retrieval operator can substantially reduce the search space — 34× on relational data, up to 554× on temporal traces — while preserving compatible candidates for downstream semantic processing. The operator is not a semantic retrieval system and does not try to be. It compresses; a downstream stage reasons.
+Structural compatibility is a different retrieval objective than semantic identity. By separating those objectives, a semantically indifferent first-stage retrieval operator can substantially reduce the search space — 34× on relational data, up to 554× on temporal traces — while preserving compatible candidates for downstream semantic processing. It compresses; a downstream stage reasons.
 
 ---
 
