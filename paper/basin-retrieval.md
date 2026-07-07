@@ -6,7 +6,7 @@ This paper describes a retrieval method for relational data that does not try to
 
 The mechanism is a canonical structural signature over relational walks. We assign node identity by first occurrence while walking the relational graph of the data, rather than using semantic labels. This was determined empirically — when we let labels define the first neighborhood they fragmented the compatible sets we needed to preserve.
 
-On held-out retrieval experiments the signature naturally organizes the data into topological neighborhoods, compressing the problem space into a small basin 34× with a target inclusion rate of 1.0. We achieved similar results on project-history content (32×) and on temporal window traces where the problem had time as a component (up to 554×), again with perfect inclusion. The operator's job is compression, not selection.
+On held-out retrieval, compression is domain-dependent: 34× on synthetic relational families, 32× on project-history content, up to 554× on temporal traces, and 12.7× on a domain the operator never saw during development (code call-graphs from unrelated repositories). Target inclusion is 1.0 throughout — the operator preserves the target on every corpus. Lexical and token-overlap baselines compress more aggressively on that fresh domain (66–540×) but drop inclusion to 0.02–0.35: they compress by losing the target. The operator's job is compression without losing the target, not selection.
 
 ---
 
@@ -37,7 +37,7 @@ So the question the first stage answers is simply:
 This paper contributes:
 
 - a **first-stage structural retrieval operator that changes the retrieval objective from semantic identification to compatibility preservation**, retrieving bounded compatible basins for downstream processing — semantically indifferent, and evaluated by whether the target is preserved in the retrieved basin;
-- a measured compression envelope (34× on synthetic relational families, 32× on project history, up to 554× on temporal traces, with perfect target inclusion throughout).
+- a measured compression envelope, **domain-dependent but with perfect target inclusion throughout** (34× on synthetic relational families, 32× on project history, up to 554× on temporal traces, 12.7× on a fresh code-graph domain), contrasted against lexical and token-overlap baselines that compress more but fail to preserve the target.
 
 ---
 
@@ -168,8 +168,9 @@ Three sources, each relational but of different character:
 1. **Synthetic relational families** — 20 disjoint generated families plus 10 polysemy bases (prefix-shared, divergent continuations), 68 stored items total. Used to measure clean compression and polysemy retention on held-out instances.
 2. **Project history (LDGR)** — 32 items drawn from real observations, artifact descriptions, and report fragments. LDGR is a continuity tool our team uses that creates permanent event logs; we turned its workflow content into relational signatures to test the operator on natural rather than generated content.
 3. **Temporal traces** — long-window workflow event logs (~6,400 sequences). Used to test the operator on genuinely temporal, high-volume content where the search space is large.
+4. **Fresh-domain code call-graphs** — 2,552 typed walks extracted from the ASTs of four unrelated Python repositories (delta-top, rica, tdm, magi) the operator was not developed against. Functions become nodes; calls, inheritance, and imports become typed edges; bounded DFS walks become the indexed items. Used to test whether the compression envelope generalizes beyond the corpora that shaped the operator.
 
-We index on instances `0..k−2` of each family and query the held-out instance `k−1`, so compression is measured on structurally novel items rather than exact replay.
+We index on a held-in split of each family and query the held-out members by their prefix, so compression is measured on structurally novel items rather than exact replay.
 
 ### Metrics
 
@@ -196,16 +197,30 @@ On every content type we tested, the structural operator retrieves a small bound
 | project history, LDGR (32 items) | 32 | 1.0 | **32×** | **1.0** |
 | synthetic motifs, suffix set N=3 | 150 | ~2.1 | 23.9× | 1.0 (coverage 0.88) |
 | temporal traces, long window (~6.4k seq) | ~6,400 | 11.5 | **554×** | 1.0 (coverage 1.0) |
+| fresh-domain code call-graphs (~2.5k walks) | 1,255 | ~99 | **12.7×** | **1.0** |
 
-Compression ranges from ~24× on small synthetic motifs to 554× on large temporal traces. Target inclusion is 1.0 wherever the operator returns a non-empty basin.
+Compression ranges from 12.7× on the fresh-domain code graphs to 554× on large temporal traces. Compression magnitude is domain-dependent — it tracks how much structural recurrence the underlying content contains — but target inclusion is 1.0 wherever the operator returns a non-empty basin, including on the domain it never saw during development. Compression scales with evidence length on the fresh domain: 1.7× at half-length prefixes rising to 12.7× at full evidence, with inclusion held at 1.0 across the sweep.
 
 ### 6.2 Basin size and polysemy
 
 Basins are small (1–2 items on relational content, ~11 on large temporal corpora), and the operator does not collapse polysemy to a single answer. A prefix shared by divergent families correctly activates all compatible basins (ambiguity retention 1.0), with mean shared-preface basin ~5.6 narrowing to ~1.15 once a disambiguating relation is added. Returning a small set rather than one answer is by design — the operator compresses for a downstream selector.
 
-### 6.3 What is stable and what is not
+### 6.3 Baselines: compression versus inclusion
 
-Compression and inclusion are stable across all three content types. The operator is a compression stage, and compression is what the data show. We introduce no new concepts here.
+To check that the operator is not merely a worse compressor, we ran two fair baselines on the fresh-domain corpus under the same held-out protocol: a lexical token-prefix hash (shard by the concrete token sequence) and token-set Jaccard (return walks whose token-set overlap clears a threshold).
+
+| method | compression | target inclusion | coverage |
+|---|---:|---:|---:|
+| basin-retrieval (typed) | **12.7×** | **1.0** | **1.0** |
+| token-prefix-hash (lexical) | 540× | 0.025 | 0.025 |
+| token-set-jaccard@0.5 | 82× | 0.244 | 0.278 |
+| token-set-jaccard@0.3 | 66× | 0.353 | 0.423 |
+
+The baselines compress more aggressively but lose the target: the lexical prefix-hash achieves 540× compression precisely because almost nothing survives, including the answer (inclusion 0.025). Token-overlap does better on inclusion but never reaches it. The operator sits at the safe end of the tradeoff — meaningful compression, perfect target preservation. That is the contribution: not maximum compression, but compression that does not discard the target.
+
+### 6.4 What is stable and what is not
+
+Compression magnitude is domain-dependent (12.7× on fresh code graphs versus 554× on temporal traces), but target inclusion is stable at 1.0 across every corpus, including the domain the operator never saw. The operator is a compression stage whose safety property generalizes; its compression magnitude tracks the structural recurrence density of the content. We introduce no new concepts here.
 
 ---
 
@@ -225,7 +240,7 @@ LLM  →  structural basin retrieval  →  semantic retrieval  →  reasoning
 
 The basin-retrieval stage is a first-stage search-space reduction. It does not identify the answer; it removes everything structurally incompatible, leaving a small bounded basin that a downstream semantic or reasoning stage can afford to process in full. Because the first stage is semantically indifferent, it does not pay the cost of semantic specificity where that cost is purely harmful, and it does not fragment the neighborhoods the downstream stage will need.
 
-This reframes what a retrieval stage is for. The first stage's job is not to be smart; it is to be cheap and safe — to compress aggressively while keeping the target in the basin. Smart discrimination belongs later, over a basin small enough to afford it. The compression results in Section 6 say that cheap-and-safe is achievable: 34× on relational data, 554× on temporal traces, with perfect inclusion. Downstream stages receive a tractable candidate set rather than a corpus.
+This reframes what a retrieval stage is for. The first stage's job is not to be smart; it is to be cheap and safe — to compress while keeping the target in the basin. Smart discrimination belongs later, over a basin small enough to afford it. The compression results in Section 6 say that cheap-and-safe is achievable — 12.7× on a fresh domain up to 554× on temporal traces, with perfect inclusion throughout and unlike baselines that compress more by losing the target. Downstream stages receive a tractable candidate set rather than a corpus.
 
 Two observations from development that motivate the design but fall outside this paper's scope:
 
@@ -245,19 +260,19 @@ We are deliberately blunt here, because honest boundaries are what make a compre
 - **Cannot distinguish structurally identical sequences.** Two items with the same recurrence shape are indistinguishable to the first stage; only a downstream semantic stage can separate them.
 - **Deletion of identity-establishing evidence is destructive.** Because the encoding keys on first-occurrence position, removing the evidence that establishes recurrence identity can collapse the basin. Realistic redundant queries usually survive this, but adversarial deletion does not.
 - **Not intended to replace embeddings.** Embeddings and dense retrieval solve a different problem (identity retrieval, Section 2.1). This operator is a stage that runs before them, not a substitute.
-- **Evaluated only as a compression operator.** Every number in this paper is measured on relational/temporal workloads used to develop the method. Whether the compression envelope is a property of structural compatibility or a property of these corpora can only be settled by testing on domains that did not shape the operator (code, documents, external knowledge graphs). That test is open.
+- **Compression magnitude is domain-dependent.** The fresh-domain test (code call-graphs) shows the operator generalizes to a domain it never saw, with perfect inclusion, but at lower compression (12.7× vs 34×). Compression tracks structural recurrence density. Whether the envelope holds on documents and external knowledge graphs — domains structurally unlike code or workflow logs — remains open.
 
 ---
 
 ## 9. Conclusion
 
-Structural compatibility is a different retrieval objective than semantic identity. By separating those objectives, a semantically indifferent first-stage retrieval operator can substantially reduce the search space — 34× on relational data, up to 554× on temporal traces — while preserving compatible candidates for downstream semantic processing. It compresses; a downstream stage reasons.
+Structural compatibility is a different retrieval objective than semantic identity. By separating those objectives, a semantically indifferent first-stage retrieval operator can substantially reduce the search space — from 12.7× on a fresh code-graph domain to 554× on temporal traces — while preserving the target. Baselines compress more aggressively but fail to preserve it; the operator sits at the safe end of that tradeoff. It compresses without losing the answer; a downstream stage reasons.
 
 ---
 
 ## Reproducibility
 
-All experiments run with seed `20260706`. The synthetic corpus is generated by a fixed relational-family generator (20 disjoint families + 10 polysemy bases); project-history content is the LDGR observation/artifact/report corpus; temporal traces are long-window workflow event logs. Code, raw result JSON, and the project history used as memory content are archived:
+All experiments run with seed `20260706`. The synthetic corpus is generated by a fixed relational-family generator (20 disjoint families + 10 polysemy bases); project-history content is the LDGR observation/artifact/report corpus; temporal traces are long-window workflow event logs; the fresh-domain corpus is extracted from four external Python repositories (delta-top, rica, tdm, magi). Code, raw result JSON, and the project history used as memory content are archived:
 
 ```text
 GitHub:   https://github.com/hydra-dynamix/basin-retrieval
