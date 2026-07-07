@@ -24,7 +24,7 @@ Conventional retrieval asks
 
 > Which item is correct?
 
-We argue the first stage should ask a cheaper question instead. Correctness becomes the downstream stage's job; the first stage is responsible only for compatibility — returning a small set that preserves the target while eliminating everything structurally incompatible. We call this candidate-space compression. The method is a success when the basin is small and the target is in it, not when the target is ranked first.
+We investigate an alternative first-stage retrieval objective that asks a cheaper question instead. Correctness becomes the downstream stage's job; the first stage is responsible only for compatibility — returning a small set that preserves the target while eliminating everything structurally incompatible. We call this candidate-space compression. The method is a success when the basin is small and the target is in it, not when the target is ranked first.
 
 The contribution of this paper is an operator that does exactly this for relational data, using a semantically indifferent structural key. The design choice that makes it work is negative: do not let semantic labels define the first-pass neighborhood. The operator is not a semantic retrieval system and does not try to be.
 
@@ -36,14 +36,14 @@ So the question the first stage answers is simply:
 
 This paper contributes:
 
-- a **first-stage structural retrieval operator that compresses search spaces into bounded compatible basins** — semantically indifferent, and evaluated by whether the target is preserved in the retrieved basin;
+- a **first-stage structural retrieval operator that changes the retrieval objective from semantic identification to compatibility preservation**, retrieving bounded compatible basins for downstream processing — semantically indifferent, and evaluated by whether the target is preserved in the retrieved basin;
 - a measured compression envelope (34× on synthetic relational families, 32× on project history, up to 554× on temporal traces, with perfect target inclusion throughout).
 
 ---
 
 ## 2. Retrieval Objectives
 
-This is the conceptual core of the paper. We claim there are two fundamentally different retrieval goals, and that conflating them is where most of the wasted effort comes from.
+The central move of this paper is conceptual: the first stage should not attempt semantic identification at all. It should change the retrieval objective from finding the correct item to preserving the compatible set. Compression is the consequence of that change, not the mechanism; once the first stage asks only what could still be correct, the basin it returns is necessarily small. We make the distinction concrete by naming two retrieval goals, because conflating them is where most of the wasted retrieval effort comes from.
 
 ### 2.1 Identity retrieval
 
